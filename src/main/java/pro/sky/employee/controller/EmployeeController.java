@@ -1,9 +1,13 @@
-package pro.sky.Employee;
+package pro.sky.employee.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import pro.sky.employee.service.EmployeeService;
+import pro.sky.employee.data.Employees;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/emploees")
@@ -28,4 +32,9 @@ public class EmployeeController {
     public Employees findEmployee(@RequestParam String firstName, @RequestParam String lastName) {
         return employeeService.findEmployee(firstName, lastName);
     }
+
+    @GetMapping("/employeelist")
+    public List<Employees> printEmployeeList() {
+        return employeeService.getEmployeeList();
     }
+}

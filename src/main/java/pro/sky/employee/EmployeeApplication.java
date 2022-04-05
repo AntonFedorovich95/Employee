@@ -1,4 +1,4 @@
-package pro.sky.Employee;
+package pro.sky.employee;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
