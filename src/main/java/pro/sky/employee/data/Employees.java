@@ -1,4 +1,4 @@
-package pro.sky.Employee;
+package pro.sky.employee.data;
 
 import java.util.Objects;
 
@@ -17,6 +17,14 @@ String lastName;
 
     public String getLastName() {
         return lastName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     @Override
