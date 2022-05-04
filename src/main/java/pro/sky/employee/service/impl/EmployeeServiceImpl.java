@@ -1,10 +1,12 @@
 package pro.sky.employee.service.impl;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import pro.sky.employee.exceptions.EmployeeExistsException;
 import pro.sky.employee.data.Employees;
 import pro.sky.employee.exceptions.NotFound;
 import pro.sky.employee.service.EmployeeService;
+import pro.sky.employee.exceptions.InvalidNameException;
 
 
 import java.util.*;
@@ -16,17 +18,23 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employees addEmployee(String lastName, String firstName, Integer idDepartment, Integer salaryPerMonth) {
-        String s = lastName + ' ' + firstName;
+        if ((StringUtils.isAlpha(lastName) != true) || (StringUtils.isAlpha(firstName) != true)) {
+            throw new InvalidNameException();
+        }
+        String s = StringUtils.capitalize(lastName) + ' ' + StringUtils.capitalize(firstName);
         if (employees.containsKey(s)) {
             throw new EmployeeExistsException();
         }
-        employees.put(s, new Employees(lastName, firstName, idDepartment, salaryPerMonth));
+        employees.put(s, new Employees(StringUtils.capitalize(lastName), StringUtils.capitalize(firstName), idDepartment, salaryPerMonth));
         return employees.get(s);
     }
 
     @Override
     public Employees removeEmployee(String lastName, String firstName) {
-        String s = lastName + ' ' + firstName;
+        if ((StringUtils.isAlpha(lastName) != true) || (StringUtils.isAlpha(firstName) != true)) {
+            throw new InvalidNameException();
+        }
+        String s = StringUtils.capitalize(lastName) + ' ' + StringUtils.capitalize(firstName);
         if (!employees.containsKey(s)) {
             throw new NotFound();
         }
@@ -37,7 +45,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employees findEmployee(String lastName, String firstName) {
-        String s = lastName + ' ' + firstName;
+        if ((StringUtils.isAlpha(lastName) != true) || (StringUtils.isAlpha(firstName) != true)) {
+            throw new InvalidNameException();
+        }
+        String s = StringUtils.capitalize(lastName) + ' ' + StringUtils.capitalize(firstName);
         if (!employees.containsKey(s)) {
             throw new NotFound();
         }
