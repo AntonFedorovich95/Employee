@@ -2,13 +2,13 @@ package pro.sky.employee.data;
 
 import java.util.Objects;
 
-public class Employees {
-    private String lastName;
-    private String firstName;
-    private Integer idDepartment;
-    private Integer salary;
+public class Employee {
+    private final String lastName;
+    private final String firstName;
+    private final Integer idDepartment;
+    private final Integer salary;
 
-    public Employees(String lastName, String firstName, Integer idDepartment, Integer salary) {
+    public Employee(String lastName, String firstName, Integer idDepartment, Integer salary) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.idDepartment = idDepartment;
@@ -31,35 +31,19 @@ public class Employees {
         return salary;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setIdDepartment(Integer idDepartment) {
-        this.idDepartment = idDepartment;
-    }
-
-    public void setSalaryPerMonth(Integer salaryPerMonth) {
-        this.salary = salaryPerMonth;
-    }
-
     @Override
     public String toString() {
-        return ("lastName: " + lastName
-                + ", firstName: " + firstName
-                + ", idDepartment: " + idDepartment
-                + ", salary: " + salary + " rub/month");
+        return ("Фамилия: " + lastName
+                + ", Имя: " + firstName
+                + ", Департамент: " + idDepartment
+                + ", Зарплата: " + salary + " rub/month");
     }
 
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
-        Employees employee = (Employees) obj;
+        Employee employee = (Employee) obj;
         return lastName.equals(employee.lastName)
                 && firstName.equals(employee.firstName)
                 && idDepartment.equals(employee.idDepartment)

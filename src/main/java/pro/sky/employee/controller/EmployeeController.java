@@ -2,12 +2,12 @@ package pro.sky.employee.controller;
 
 import org.springframework.web.bind.annotation.*;
 import pro.sky.employee.service.EmployeeService;
-import pro.sky.employee.data.Employees;
+import pro.sky.employee.data.Employee;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/emploees")
+@RequestMapping("/employee")
 public class EmployeeController {
     private final EmployeeService employeeService;
 
@@ -16,7 +16,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/add")
-    public Employees addEmployeeToList(@RequestParam("lastName") String lastName,
+    public Employee addEmployeeToList(@RequestParam("lastName") String lastName,
                                       @RequestParam("firstName") String firstName,
                                       @RequestParam("department") Integer idDepartment,
                                       @RequestParam("salary") Integer salaryPerMonth) {
@@ -24,17 +24,17 @@ public class EmployeeController {
     }
 
     @GetMapping("/remove")
-    public Employees removeEmployeeFromList(@RequestParam String lastName, @RequestParam String firstName) {
+    public Employee removeEmployeeFromList(@RequestParam String lastName, @RequestParam String firstName) {
         return employeeService.removeEmployee(lastName, firstName);
     }
 
     @GetMapping("/find-employee")
-    public Employees findEmployeeInList(@RequestParam String lastName, @RequestParam String firstName) {
+    public Employee findEmployeeInList(@RequestParam String lastName, @RequestParam String firstName) {
         return employeeService.findEmployee(lastName, firstName);
     }
 
-    @GetMapping("/employeelist")
-    public List<Employees> printEmployeeList() {
+    @GetMapping("/employee-list")
+    public List<Employee> printEmployeeList() {
         return employeeService.getEmployeeList();
     }
 
@@ -44,17 +44,17 @@ public class EmployeeController {
     }
 
     @GetMapping("/departments/max-salary")
-    public List<Employees> employeesMaxSalaryInDepartment(@RequestParam Integer idDepartment) {
+    public List<Employee> employeesMaxSalaryInDepartment(@RequestParam Integer idDepartment) {
         return employeeService.maxSalaryInDepartment(idDepartment);
     }
 
     @GetMapping("/departments/min-salary")
-    public List<Employees> employeesMinSalaryInDepartment(@RequestParam Integer idDepartment) {
+    public List<Employee> employeesMinSalaryInDepartment(@RequestParam Integer idDepartment) {
         return employeeService.minSalaryInDepartment(idDepartment);
     }
 
     @GetMapping(value = {"/departments/all",  "/departments/all/{idDepartment}"})
-    public List<Employees> createListOfEmployees(@PathVariable(required = false) Integer idDepartment) {
+    public List<Employee> createListOfEmployees(@PathVariable(required = false) Integer idDepartment) {
         if (idDepartment != null) {
             return employeeService.findEmployeesIdDepartment(idDepartment);
         } else {
