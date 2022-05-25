@@ -1,24 +1,31 @@
 package pro.sky.employee.service;
 
-import pro.sky.employee.data.Employees;
+import pro.sky.employee.data.Employee;
 
 import java.util.List;
+import java.util.Map;
 
 public interface EmployeeService {
-    Employees addEmployee(String lastName, String firstName, Integer idDepartment, Integer salaryPerMonth);
+    Employee addEmployee(String lastName, String firstName, Integer idDepartment, Integer salaryPerMonth);
 
-    Employees removeEmployee(String lastName, String firstName);
+    Employee removeEmployee(String lastName, String firstName);
 
-    Employees findEmployee(String lastName, String firstName);
+    Employee findEmployee(String lastName, String firstName);
 
-    List<Employees> getEmployeeList();
+    List<Employee> getEmployeeList();
 
     String sumSalary();
-    List<Employees> maxSalaryInDepartment(Integer idDepartment);
+    List<Employee> maxSalaryInDepartment(Integer idDepartment);
 
-    List<Employees> findEmployeesIdDepartment(Integer idDepartment);
+    List<Employee> findEmployeesIdDepartment(Integer idDepartment);
 
-    List<Employees> minSalaryInDepartment(Integer idDepartment);
+    List<Employee> minSalaryInDepartment(Integer idDepartment);
 
-    List<Employees> sortListEmployeesDepartment();
+    List<Employee> sortListEmployeesDepartment();
+
+    void checkEmployeeWrongNameException(String lastName, String firstName);
+
+    void checkEmployeeExistsException(Map<String, Employee> employees, String s);
+
+    void checkEmployeeNotFoundException(Map<String, Employee> employees, String s);
 }
